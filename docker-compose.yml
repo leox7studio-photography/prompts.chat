@@ -1,0 +1,69 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:15-alpine
+    container_name: prompts-chat-db
+    environment:
+      POSTGRES_USER: prompts_user
+      POSTGRES_PASSWORD: prompts_password
+      POSTGRES_DB: prompts_chat
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U prompts_user -d prompts_chat"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Next.js Application
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: prompts-chat-app
+    environment:
+      DATABASE_URL: postgresql://prompts_user:prompts_password@postgres:5432/prompts_chat
+      DIRECT_URL: postgresql://prompts_user:prompts_password@postgres:5432/prompts_chat
+      NODE_ENV: production
+    ports:
+      - "3000:3000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:3000"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+  # Prisma Studio for database inspection (optional)
+  prisma-studio:
+    image: node:24-alpine
+    container_name: prompts-chat-studio
+    working_dir: /app
+    volumes:
+      - .:/app
+    environment:
+      DATABASE_URL: postgresql://prompts_user:prompts_password@postgres:5432/prompts_chat
+    ports:
+      - "5555:5555"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    command: npx prisma studio
+    profiles:
+      - studio
+
+volumes:
+  postgres_data:
+    driver: local
+
+networks:
+  default:
+    name: prompts-chat-network

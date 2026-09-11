@@ -1,55 +1,56 @@
-# Dependencies
-node_modules
-npm-debug.log*
-
-# Build outputs
-.next
-out
-dist
-
 # Git
 .git
 .gitignore
 .gitattributes
+
+# Dependencies
+node_modules
+npm-debug.log
+yarn-error.log
+
+# Build outputs
+.next
+dist
+build
+*.tsbuildinfo
 
 # IDE
 .vscode
 .idea
 *.swp
 *.swo
+*~
+.DS_Store
 
-# Environment files
-.env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-.env.sentry-build-plugin
-
-# Docker
-compose.yml
-docker-compose*.yml
-
-# Development files
-.github
-.claude
-packages
-*.md
-!README.md
-
-# Test files
+# Testing
+.pytest_cache
+.coverage
 coverage
 .nyc_output
-vitest.config.ts
-vitest.setup.ts
 
-# OS files
-.DS_Store
-Thumbs.db
+# Environment files (use only build args)
+.env
+.env.local
+.env.*.local
 
-# Logs
-logs
-*.log
+# CI/CD
+.github
+.gitlab-ci.yml
+.circleci
 
-# Prisma
-prisma/migrations/**/migration_lock.toml
+# Documentation
+README.md
+CHANGELOG.md
+LICENSE*
+
+# Other
+.editorconfig
+docker-compose*.yml
+Dockerfile*
+entrypoint.sh
+
+# Development
+src
+tsconfig.json
+next.config.*
+prisma/migrations
