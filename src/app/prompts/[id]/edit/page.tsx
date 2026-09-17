@@ -4,7 +4,7 @@ import { getTranslations } from "next-intl/server";
 import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { PromptForm } from "@/components/prompts/prompt-form";
-import { isAIGenerationEnabled, getAIModelName } from "@/lib/ai/generation";
+import { isPromptBuilderEnabled, getPromptBuilderModelName } from "@/lib/ai/generation";
 
 interface EditPromptPageProps {
   params: Promise<{ id: string }>;
@@ -63,7 +63,7 @@ export default async function EditPromptPage({ params }: EditPromptPageProps) {
   // Check if user is the author or admin
   const isAuthor = prompt.authorId === session.user.id;
   const isAdmin = session.user.role === "ADMIN";
-  
+
   if (!isAuthor && !isAdmin) {
     redirect(`/prompts/${id}`);
   }
@@ -101,9 +101,9 @@ export default async function EditPromptPage({ params }: EditPromptPageProps) {
     workflowLink: (prompt as unknown as { workflowLink?: string }).workflowLink || "",
   };
 
-  // Check if AI generation is enabled
-  const aiGenerationEnabled = await isAIGenerationEnabled();
-  const aiModelName = getAIModelName();
+  // Prompt Builder supports Experiential Labs or the existing OpenAI provider.
+  const aiGenerationEnabled = await isPromptBuilderEnabled();
+  const aiModelName = getPromptBuilderModelName();
 
   return (
     <div className="container max-w-3xl py-8">

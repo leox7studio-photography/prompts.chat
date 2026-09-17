@@ -13,7 +13,7 @@ function getOpenAIClient(): OpenAI {
     if (!apiKey) {
       throw new Error("OPENAI_API_KEY is not set");
     }
-    openai = new OpenAI({ 
+    openai = new OpenAI({
       apiKey,
       baseURL: process.env.OPENAI_BASE_URL || undefined,
     });
@@ -22,9 +22,16 @@ function getOpenAIClient(): OpenAI {
 }
 
 const GENERATIVE_MODEL = process.env.OPENAI_GENERATIVE_MODEL || "gpt-4o-mini";
+const PROMPT_BUILDER_MODEL = process.env.EXPLABS_API_KEY
+  ? process.env.EXPLABS_MODEL || "gpt-5.6-luna"
+  : GENERATIVE_MODEL;
 
 export function getAIModelName(): string {
   return GENERATIVE_MODEL;
+}
+
+export function getPromptBuilderModelName(): string {
+  return PROMPT_BUILDER_MODEL;
 }
 
 export async function isAIGenerationEnabled(): Promise<boolean> {
@@ -32,9 +39,17 @@ export async function isAIGenerationEnabled(): Promise<boolean> {
   return !!(config.features.aiGeneration && process.env.OPENAI_API_KEY);
 }
 
+export async function isPromptBuilderEnabled(): Promise<boolean> {
+  const config = await getConfig();
+  return !!(
+    config.features.aiGeneration &&
+    (process.env.EXPLABS_API_KEY || process.env.OPENAI_API_KEY)
+  );
+}
+
 export async function translateContent(content: string, targetLanguage: string): Promise<string> {
   const client = getOpenAIClient();
-  
+
   const systemPrompt = interpolatePrompt(
     getSystemPrompt(translatePrompt),
     { targetLanguage }
@@ -49,7 +64,7 @@ export async function translateContent(content: string, targetLanguage: string):
     temperature: 0.3,
     max_tokens: 4000,
   });
-  
+
   return response.choices[0]?.message?.content?.trim() || "";
 }
 
@@ -60,7 +75,7 @@ export async function generateSQL(prompt: string): Promise<string> {
   }
 
   const client = getOpenAIClient();
-  
+
   const systemPrompt = getSystemPrompt(sqlGenerationPrompt);
 
   const response = await client.chat.completions.create({
@@ -72,9 +87,9 @@ export async function generateSQL(prompt: string): Promise<string> {
     temperature: 0.7,
     max_tokens: 500,
   });
-  
+
   const content = response.choices[0]?.message?.content || "";
-  
+
   // Clean up the response - remove markdown code blocks if present
   return content
     .replace(/^```sql\n?/i, "")

@@ -11,7 +11,13 @@ import { loadPrompt, getSystemPrompt } from "@/lib/ai/load-prompt";
 
 const promptBuilderAgentPrompt = loadPrompt("src/app/api/prompt-builder/chat/prompt-builder-agent.prompt.yml");
 
-const GENERATIVE_MODEL = process.env.OPENAI_GENERATIVE_MODEL || "gpt-4o-mini";
+const useExperientialLabs = Boolean(process.env.EXPLABS_API_KEY);
+const GENERATIVE_MODEL = useExperientialLabs
+  ? process.env.EXPLABS_MODEL || "gpt-5.6-luna"
+  : process.env.OPENAI_GENERATIVE_MODEL || "gpt-4o-mini";
+const API_BASE_URL = useExperientialLabs
+  ? process.env.EXPLABS_BASE_URL || "https://api.experientiallabs.ai/v1"
+  : process.env.OPENAI_BASE_URL || undefined;
 
 // Rate limiting configuration
 const RATE_LIMIT_WINDOW_MS = 60 * 1000; // 1 minute
@@ -74,12 +80,12 @@ export async function POST(request: NextRequest) {
   const userId = session.user.id || session.user.email || "anonymous";
   const rateLimit = checkRateLimit(userId);
   if (!rateLimit.allowed) {
-    return new Response(JSON.stringify({ 
+    return new Response(JSON.stringify({
       error: "Rate limit exceeded. Please try again later.",
       resetIn: Math.ceil(rateLimit.resetIn / 1000)
     }), {
       status: 429,
-      headers: { 
+      headers: {
         "Content-Type": "application/json",
         "X-RateLimit-Remaining": "0",
         "X-RateLimit-Reset": String(Math.ceil(rateLimit.resetIn / 1000)),
@@ -95,9 +101,9 @@ export async function POST(request: NextRequest) {
     });
   }
 
-  const apiKey = process.env.OPENAI_API_KEY;
+  const apiKey = process.env.EXPLABS_API_KEY || process.env.OPENAI_API_KEY;
   if (!apiKey) {
-    return new Response(JSON.stringify({ error: "OpenAI API key not configured" }), {
+    return new Response(JSON.stringify({ error: "AI API key not configured" }), {
       status: 500,
       headers: { "Content-Type": "application/json" },
     });
@@ -110,24 +116,23 @@ export async function POST(request: NextRequest) {
   const encoder = new TextEncoder();
   const { readable, writable } = new TransformStream();
   const writer = writable.getWriter();
-  
+
   const send = async (data: object) => {
     await writer.write(encoder.encode(`data: ${JSON.stringify(data)}\n\n`));
   };
 
   // Start processing in background
   (async () => {
-
     try {
       const openai = new OpenAI({
         apiKey,
-        baseURL: process.env.OPENAI_BASE_URL || undefined,
+        baseURL: API_BASE_URL,
       });
 
       // Build available tags and categories context
       const tagNames = availableTags.map(t => t.name).join(", ");
       const categoryNames = availableCategories.map(c => c.name).join(", ");
-        
+
       const availableContext = `
 
 AVAILABLE TAGS (use exact names with set_tags):
@@ -143,7 +148,7 @@ ${categoryNames || "(none)"}`;
         .filter(Boolean)
         .join(", ");
       const selectedCategoryName = availableCategories.find(c => c.id === currentState.categoryId)?.name;
-      
+
       const stateContext = hasContent ? `
 
 CURRENT PROMPT STATE:
@@ -205,7 +210,6 @@ CRITICAL: When editing content, you MUST preserve the FULL content above. Do NOT
       while (loopCount < maxLoops) {
         loopCount++;
 
-        // Use streaming for the final response
         const response = await openai.chat.completions.create({
           model: GENERATIVE_MODEL,
           messages: openaiMessages,
@@ -222,7 +226,7 @@ CRITICAL: When editing content, you MUST preserve the FULL content above. Do NOT
         for await (const chunk of response) {
           const delta = chunk.choices[0]?.delta;
 
-          // Stream text content
+          // Stream text content to the UI as soon as each model chunk arrives.
           if (delta?.content) {
             fullContent += delta.content;
             await send({ type: "text", content: delta.content });
@@ -233,7 +237,7 @@ CRITICAL: When editing content, you MUST preserve the FULL content above. Do NOT
             for (const tc of delta.tool_calls) {
               const idx = tc.index;
               const existing = toolCallsAccumulator.get(idx);
-              
+
               if (existing) {
                 // Append to existing tool call
                 if (tc.id) existing.id = tc.id;
@@ -340,8 +344,9 @@ CRITICAL: When editing content, you MUST preserve the FULL content above. Do NOT
   return new Response(readable, {
     headers: {
       "Content-Type": "text/event-stream",
-      "Cache-Control": "no-cache",
+      "Cache-Control": "no-cache, no-transform",
       "Connection": "keep-alive",
+      "X-Accel-Buffering": "no",
     },
   });
 }
