@@ -48,9 +48,3 @@ LICENSE*
 docker-compose*.yml
 Dockerfile*
 entrypoint.sh
-
-# Development
-src
-tsconfig.json
-next.config.*
-prisma/migrations
