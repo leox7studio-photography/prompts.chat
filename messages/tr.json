@@ -2249,5 +2249,32 @@
       "postgresql": "PostgreSQL database",
       "npm": "npm"
     }
+  },
+  "emailSignature": {
+    "eyebrow": "E-posta imza stüdyosu",
+    "title": "Zoho Mail için hazırlanmış profesyonel bir imza.",
+    "description": "JW Tech imzanızı özelleştirin, anında önizleyin ve doğrudan Zoho Mail’e kopyalayın.",
+    "detailsEyebrow": "Bilgileriniz",
+    "detailsTitle": "İmza ayrıntıları",
+    "previewEyebrow": "Canlı önizleme",
+    "previewTitle": "Sonraki e-postanız için hazır",
+    "copy": "İmzayı kopyala",
+    "copied": "Kopyalandı",
+    "reset": "Alanları sıfırla",
+    "desktopPreview": "Masaüstü e-posta önizlemesi",
+    "howToTitle": "Zoho Mail’e nasıl eklenir",
+    "steps": {
+      "copy": "Yukarıdaki İmzayı kopyala düğmesine tıklayın.",
+      "open": "Zoho Mail’de Ayarlar → İmzalar’ı açın.",
+      "paste": "Bir imza oluşturun, yapıştırın ve kaydedin."
+    },
+    "fields": {
+      "name": "Ad",
+      "role": "Unvan",
+      "phone": "Telefon",
+      "email": "E-posta",
+      "website": "Web sitesi",
+      "address": "Konum"
+    }
   }
 }

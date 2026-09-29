@@ -2252,5 +2252,32 @@
       "postgresql": "PostgreSQL database",
       "npm": "npm"
     }
+  },
+  "emailSignature": {
+    "eyebrow": "Estúdio de assinatura de e-mail",
+    "title": "Uma assinatura profissional para o Zoho Mail.",
+    "description": "Personalize sua assinatura JW Tech, visualize e copie diretamente para o Zoho Mail.",
+    "detailsEyebrow": "Suas informações",
+    "detailsTitle": "Detalhes da assinatura",
+    "previewEyebrow": "Prévia ao vivo",
+    "previewTitle": "Pronta para o próximo e-mail",
+    "copy": "Copiar assinatura",
+    "copied": "Copiada",
+    "reset": "Redefinir campos",
+    "desktopPreview": "Prévia de e-mail no computador",
+    "howToTitle": "Como adicionar ao Zoho Mail",
+    "steps": {
+      "copy": "Clique em Copiar assinatura.",
+      "open": "No Zoho Mail, abra Configurações → Assinaturas.",
+      "paste": "Crie uma assinatura, cole e salve."
+    },
+    "fields": {
+      "name": "Nome",
+      "role": "Cargo",
+      "phone": "Telefone",
+      "email": "E-mail",
+      "website": "Site",
+      "address": "Localização"
+    }
   }
 }

@@ -2238,5 +2238,32 @@
       "postgresql": "PostgreSQL database",
       "npm": "npm"
     }
+  },
+  "emailSignature": {
+    "eyebrow": "メール署名スタジオ",
+    "title": "Zoho Mailのための洗練された署名。",
+    "description": "JW Techの署名をカスタマイズしてプレビューし、Zoho Mailへ直接コピーできます。",
+    "detailsEyebrow": "あなたの情報",
+    "detailsTitle": "署名の詳細",
+    "previewEyebrow": "ライブプレビュー",
+    "previewTitle": "次のメールに使用できます",
+    "copy": "署名をコピー",
+    "copied": "コピーしました",
+    "reset": "リセット",
+    "desktopPreview": "デスクトップメールのプレビュー",
+    "howToTitle": "Zoho Mailへの追加方法",
+    "steps": {
+      "copy": "上の「署名をコピー」をクリックします。",
+      "open": "Zoho Mailで「設定」→「署名」を開きます。",
+      "paste": "署名を作成し、貼り付けて保存します。"
+    },
+    "fields": {
+      "name": "名前",
+      "role": "役職",
+      "phone": "電話",
+      "email": "メール",
+      "website": "ウェブサイト",
+      "address": "所在地"
+    }
   }
 }

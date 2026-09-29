@@ -2238,5 +2238,32 @@
       "postgresql": "PostgreSQL database",
       "npm": "npm"
     }
+  },
+  "emailSignature": {
+    "eyebrow": "邮件签名工作室",
+    "title": "专为 Zoho Mail 打造的精美签名。",
+    "description": "自定义您的 JW Tech 专业签名，即时预览，然后直接复制到 Zoho Mail。",
+    "detailsEyebrow": "您的信息",
+    "detailsTitle": "签名详情",
+    "previewEyebrow": "实时预览",
+    "previewTitle": "可用于下一封邮件",
+    "copy": "复制签名",
+    "copied": "已复制",
+    "reset": "重置字段",
+    "desktopPreview": "桌面邮件预览",
+    "howToTitle": "如何添加到 Zoho Mail",
+    "steps": {
+      "copy": "点击上方的“复制签名”。",
+      "open": "在 Zoho Mail 中打开“设置”→“签名”。",
+      "paste": "创建签名、粘贴并保存。"
+    },
+    "fields": {
+      "name": "姓名",
+      "role": "职位",
+      "phone": "电话",
+      "email": "电子邮件",
+      "website": "网站",
+      "address": "位置"
+    }
   }
 }

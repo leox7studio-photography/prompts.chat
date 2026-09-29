@@ -2236,5 +2236,32 @@
       "postgresql": "PostgreSQL database",
       "npm": "npm"
     }
+  },
+  "emailSignature": {
+    "eyebrow": "استوديو توقيع البريد",
+    "title": "توقيع احترافي مصمم لبريد Zoho.",
+    "description": "خصّص توقيع JW Tech الاحترافي، وعاينه فورًا، ثم انسخه مباشرة إلى Zoho Mail.",
+    "detailsEyebrow": "معلوماتك",
+    "detailsTitle": "تفاصيل التوقيع",
+    "previewEyebrow": "معاينة مباشرة",
+    "previewTitle": "جاهز لبريدك التالي",
+    "copy": "نسخ التوقيع",
+    "copied": "تم النسخ",
+    "reset": "إعادة تعيين الحقول",
+    "desktopPreview": "معاينة بريد سطح المكتب",
+    "howToTitle": "كيفية إضافته إلى Zoho Mail",
+    "steps": {
+      "copy": "انقر على نسخ التوقيع أعلاه.",
+      "open": "في Zoho Mail، افتح الإعدادات ← التوقيعات.",
+      "paste": "أنشئ توقيعًا والصقه ثم احفظه."
+    },
+    "fields": {
+      "name": "الاسم",
+      "role": "المسمى الوظيفي",
+      "phone": "الهاتف",
+      "email": "البريد الإلكتروني",
+      "website": "الموقع الإلكتروني",
+      "address": "الموقع"
+    }
   }
 }

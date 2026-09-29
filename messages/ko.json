@@ -2238,5 +2238,32 @@
       "postgresql": "PostgreSQL database",
       "npm": "npm"
     }
+  },
+  "emailSignature": {
+    "eyebrow": "이메일 서명 스튜디오",
+    "title": "Zoho Mail을 위한 세련된 서명.",
+    "description": "JW Tech 전문 서명을 꾸미고 바로 미리 본 다음 Zoho Mail에 복사하세요.",
+    "detailsEyebrow": "내 정보",
+    "detailsTitle": "서명 세부 정보",
+    "previewEyebrow": "실시간 미리보기",
+    "previewTitle": "다음 이메일에 사용할 준비 완료",
+    "copy": "서명 복사",
+    "copied": "복사됨",
+    "reset": "필드 초기화",
+    "desktopPreview": "데스크톱 이메일 미리보기",
+    "howToTitle": "Zoho Mail에 추가하는 방법",
+    "steps": {
+      "copy": "위의 서명 복사를 클릭하세요.",
+      "open": "Zoho Mail에서 설정 → 서명을 여세요.",
+      "paste": "서명을 만들고 붙여넣은 다음 저장하세요."
+    },
+    "fields": {
+      "name": "이름",
+      "role": "직함",
+      "phone": "전화",
+      "email": "이메일",
+      "website": "웹사이트",
+      "address": "위치"
+    }
   }
 }
