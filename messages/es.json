@@ -2253,5 +2253,32 @@
       "postgresql": "PostgreSQL database",
       "npm": "npm"
     }
+  },
+  "emailSignature": {
+    "eyebrow": "Estudio de firma de correo",
+    "title": "Una firma profesional, creada para Zoho Mail.",
+    "description": "Personaliza tu firma profesional de JW Tech, previsualízala y cópiala directamente en Zoho Mail.",
+    "detailsEyebrow": "Tu información",
+    "detailsTitle": "Detalles de la firma",
+    "previewEyebrow": "Vista previa",
+    "previewTitle": "Lista para tu próximo correo",
+    "copy": "Copiar firma",
+    "copied": "Copiada",
+    "reset": "Restablecer campos",
+    "desktopPreview": "Vista previa de escritorio",
+    "howToTitle": "Cómo añadirla a Zoho Mail",
+    "steps": {
+      "copy": "Haz clic en Copiar firma.",
+      "open": "En Zoho Mail, abre Configuración → Firmas.",
+      "paste": "Crea una firma, pégala y guarda."
+    },
+    "fields": {
+      "name": "Nombre",
+      "role": "Cargo",
+      "phone": "Teléfono",
+      "email": "Correo",
+      "website": "Sitio web",
+      "address": "Ubicación"
+    }
   }
 }

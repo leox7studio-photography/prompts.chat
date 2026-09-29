@@ -2250,5 +2250,32 @@
       "postgresql": "PostgreSQL database",
       "npm": "npm"
     }
+  },
+  "emailSignature": {
+    "eyebrow": "Email signature studio",
+    "title": "A polished signature, built for Zoho Mail.",
+    "description": "Customize your professional JW Tech signature, preview it instantly, then copy it directly into Zoho Mail.",
+    "detailsEyebrow": "Your information",
+    "detailsTitle": "Signature details",
+    "previewEyebrow": "Live preview",
+    "previewTitle": "Ready for your next email",
+    "copy": "Copy signature",
+    "copied": "Copied",
+    "reset": "Reset fields",
+    "desktopPreview": "Desktop email preview",
+    "howToTitle": "How to add it to Zoho Mail",
+    "steps": {
+      "copy": "Click Copy signature above.",
+      "open": "In Zoho Mail, open Settings → Signatures.",
+      "paste": "Create a signature, paste, then save."
+    },
+    "fields": {
+      "name": "Name",
+      "role": "Job title",
+      "phone": "Phone",
+      "email": "Email",
+      "website": "Website",
+      "address": "Location"
+    }
   }
 }
