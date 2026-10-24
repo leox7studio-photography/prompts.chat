@@ -23,6 +23,8 @@ const nextConfig: NextConfig = {
   output: "standalone",
   // Experimental features
   experimental: {
+    // Reduce peak memory usage for constrained CI/hosting builds
+    webpackMemoryOptimizations: true,
     // Enable server actions
     serverActions: {
       bodySizeLimit: "2mb",
@@ -80,7 +82,7 @@ export default withSentryConfig(withMDX(withNextIntl(nextConfig)), {
   // https://docs.sentry.io/platforms/javascript/guides/nextjs/manual-setup/
 
   // Upload a larger set of source maps for prettier stack traces (increases build time)
-  widenClientFileUpload: true,
+  widenClientFileUpload: false,
 
   // tunnelRoute removed — was proxying all browser Sentry events through Vercel edge,
   // generating unnecessary edge requests ($2.45/M) and function invocations ($0.60/M).
