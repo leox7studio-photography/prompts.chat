@@ -28,7 +28,16 @@
 <label class="field" for="details">Describe what should happen</label><textarea id="details" placeholder="Example: A gentle breeze moves the hair while the person smiles naturally."></textarea>
 <button class="btn full" id="generate">Generate cinematic prompt</button></section>
 <section class="panel" style="grid-column:1/-1"><h2>03 / Your generated prompt</h2><p class="sub">Copy this prompt into a supported photo-to-video AI tool.</p><div id="output" class="output">Your cinematic prompt will appear here. Choose your settings and tap Generate cinematic prompt.</div><div class="btnrow"><button class="btn" id="copy">Copy prompt</button><button class="btn secondary" id="again">Generate another version</button><button class="btn secondary" id="clear">Reset</button><a class="btn secondary" style="text-decoration:none;display:inline-flex;align-items:center" href="https://www.meta.ai/" target="_blank" rel="noopener">Open Meta AI ↗</a></div><p class="notice">This tool creates prompts only; it does not generate video itself. Meta AI features and free quotas vary by account and region. Never share passwords, session cookies or private tokens with unofficial tools.</p></section>
-</div><footer class="bottom"><span>© LEOX7 AI VIDEO STUDIO · Prompt builder</span><span>Built for mobile creators · <a href="https://www.meta.ai/" target="_blank" rel="noopener">Meta AI</a></span></footer>
+</div><section class="panel" style="grid-column:1/-1;border-color:#596474">
+<h2>04 / Try a free video generator</h2>
+<p class="sub">LEOX7 creates your prompt. Use this external image-to-video tool to render a real video; free availability and queue times can change.</p>
+<div class="btnrow">
+<a class="btn" style="text-decoration:none;display:inline-flex;align-items:center" href="https://upsampler.co/" target="_blank" rel="noopener">Open free video generator ↗</a>
+<a class="btn secondary" style="text-decoration:none;display:inline-flex;align-items:center" href="https://huggingface.co/spaces?search=image%20to%20video" target="_blank" rel="noopener">Browse Hugging Face demos ↗</a>
+</div>
+<p class="notice">How to use: copy your prompt above → open the generator → upload the same photo again → paste the prompt → generate and download the MP4. Your photo will be processed by the external service. Do not upload private or sensitive photos unless you trust that service.</p>
+</section>
+<footer class="bottom"><span>© LEOX7 AI VIDEO STUDIO · Prompt builder</span><span>Built for mobile creators · <a href="https://www.meta.ai/" target="_blank" rel="noopener">Meta AI</a></span></footer>
 </main>
 <script>
 const $=s=>document.querySelector(s);let selectedMove='slow cinematic push-in',version=0;
